@@ -30,6 +30,14 @@ std::string DeleteUser (std::string Username, std::string Password)
     Query << "POST /Api/User/?Email=" << Username << "&Password=" << Password;
     return Query.str();
 }
+
+std::string AddSubscription(std::string Username, std::string Password)
+{
+    std::stringstream Query{};
+    Query << "POST /Api/User/Subscription/?Email=" << Username << "&Password=" << Password;
+    return Query.str();
+}
+
 int main(int argc, char *argv[])
 {
 
@@ -38,8 +46,9 @@ int main(int argc, char *argv[])
     MainSocket.bind(32323);
     MainSocket.connectToHost(QHostAddress::LocalHost, 32323);
     MainSocket.waitForConnected(-1);
-    //QByteArray Message{AddUser("Username9", "1", "123").c_str()};
-    QByteArray Message{DeleteUser("Username9", "1").c_str()}; //AddUser("Username9", "1", "123").c_str()
+    //QByteArray Message{AddUser("Username9", "1", "1").c_str()};
+    //QByteArray Message{DeleteUser("Username9", "1").c_str()}; //AddUser("Username9", "1", "123").c_str()
+    QByteArray Message{AddSubscription("Username9", "1").c_str()};
     MainSocket.write(Message);
     MainSocket.flush();
     MainSocket.waitForBytesWritten();
