@@ -66,7 +66,6 @@ std::string PendingRequest(std::string Username, std::string Album, std::string 
     std::stringstream Query{};
     Query << "POST /Api/Artist/Releases/?Email=" << Username
           << "&Album=" << Album << "&Name=" << Name;
-    std::cout << Query.str();
     return Query.str();
 }
 
